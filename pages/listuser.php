@@ -2,7 +2,7 @@
 
 $html->setTitle('list user');
 
-$html->addContent('<h3>Whitelist</h3>');
+$html->addContent('<h3>Blacklist (Spam)</h3>');
 $html->addContent('<table id="blTable" class="display">');
 $html->addContent('<thead><tr><th>id</th><th>login</th><th>action</th></thead>');
 $html->addContent('<tbody>');
@@ -12,7 +12,7 @@ $resBL = mysqli_query($db, $qBL);
 $dbBL = array();
 while ($row = mysqli_fetch_assoc($resBL)) {
 	$dbBL[$row['id']] = $row;
-	$html->addContent('<tr><td>'.$row['id'].'</td><td>'.$row['login'].'</td><td> remove from WL </td></tr>');
+	$html->addContent('<tr><td>'.$row['id'].'</td><td>'.$row['login'].'</td><td> remove from BL </td></tr>');
 }
 	
 $html->addContent('</tbody></table>');
@@ -34,8 +34,10 @@ while ($row = mysqli_fetch_assoc($resBL)) {
 	if (isset($dbBL[$row['id']])) {
 		$action = '';
 	} else {
-		$action = 'add to BL';
+		$action = '[spam]';
 	}
+	
+	$action.= ' [mail]  [no mail]';
 	
 	$html->addContent('<tr><td>'.$row['id'].'</td><td>'.$row['login'].'</td><td> '.$action.' </td></tr>');
 }
