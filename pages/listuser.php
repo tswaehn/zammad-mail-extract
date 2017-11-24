@@ -12,7 +12,7 @@ $resBL = mysqli_query($db, $qBL);
 $dbBL = array();
 while ($row = mysqli_fetch_assoc($resBL)) {
 	$dbBL[$row['id']] = $row;
-	$html->addContent('<tr><td>'.$row['id'].'</td><td>'.$row['login'].'</td><td> remove from BL </td></tr>');
+	$html->addContent('<tr><td>'.$row['id'].'</td><td>'.$row['login'].'</td><td> [no spam] </td></tr>');
 }
 	
 $html->addContent('</tbody></table>');
@@ -37,7 +37,12 @@ while ($row = mysqli_fetch_assoc($resBL)) {
 		$action = '[spam]';
 	}
 	
-	$action.= ' [mail]  [no mail]';
+	if ($row['infomail']) {
+		$action.= ' [no mail]';
+	} else {
+		$action.= ' [mail]';
+	}
+	
 	
 	$html->addContent('<tr><td>'.$row['id'].'</td><td>'.$row['login'].'</td><td> '.$action.' </td></tr>');
 }
