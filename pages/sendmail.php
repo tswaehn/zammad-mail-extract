@@ -4,7 +4,7 @@
 
 
 //query alle an die eine mail gehen soll
-$q = "SELECT c.*, b.id as bid FROM customer c left join blacklist b on b.id = c.id WHERE b.id is null";
+$q = "SELECT c.*, b.id as bid FROM customer c left join blacklist b on b.id = c.id WHERE b.id is null AND c.infomail is true";
 $res = mysqli_query($db, $q);
 
 
