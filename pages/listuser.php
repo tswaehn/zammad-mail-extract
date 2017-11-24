@@ -1,7 +1,6 @@
 <?php 
 
-$html->setTitle('sync user');
-
+$html->setTitle('list user');
 
 $html->addContent('<h3>Whitelist</h3>');
 $html->addContent('<table id="blTable" class="display">');
