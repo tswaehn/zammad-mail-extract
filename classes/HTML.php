@@ -28,7 +28,7 @@ class HTML {
 				<html>';
 		$html.= '<head>';
 		$html.= '<meta charset="utf-8">';
-		$html.= '<title>'.$this->title.' - '.$this->subTitle.'</title>';
+		$html.= '<title>'.$this->subTitle.' - '.$this->title.'</title>';
 		$html.= '<script language="javascript" src="./lib/jquery-3.2.1.min.js"></script>';
 		$html.= '<script type="text/javascript" src="./lib/jquery.dataTables.min.js"></script>';
 		$html.= '<link rel="stylesheet" type="text/css" href="./lib/jquery.dataTables.min.css" />';

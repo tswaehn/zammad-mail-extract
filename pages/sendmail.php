@@ -1,6 +1,6 @@
 <?php 
 
-
+$html->setTitle('sendmail');
 
 
 //query alle an die eine mail gehen soll
