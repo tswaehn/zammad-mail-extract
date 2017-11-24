@@ -9,11 +9,12 @@ $res = mysqli_query($db, $q);
 
 
 $html->addContent('sending mail to '.mysqli_num_rows($res).' customers:', true);
-$html->addContent('', true);
+$html->addContent('<div class="userlist">', true);
 
 while ($row = mysqli_fetch_assoc($res)) {
 
 	$html->addContent(''.$row['id'].' - '.$row['login'].'', true);
 }
+$html->addContent('</div>', true);
 
 ?>
