@@ -51,11 +51,12 @@ class Zammad {
 	
 	protected function execAPI($page = 1) {
 		$paging = '&page='.$page.'&per_page=500';
+		//var_dump($this->apiurl . $this->mode);
 		curl_setopt($this->con, CURLOPT_URL, $this->apiurl . $this->mode . $paging);
 		return curl_exec($this->con);
 	}
 	
-	protected function setMode($mode) {
+	protected function setMode($mode, $parameter='') {
 		
 		switch ($mode) {
 			
@@ -64,7 +65,7 @@ class Zammad {
 				break;
 			
 		}
-		
+		$this->mode.= $parameter;
 		$this->mode.= '?expand=true';
 	}
 	
@@ -74,9 +75,8 @@ class Zammad {
 	 * @return boolean true if connect to zammad api successful, false otherwise
 	 */
 	public function checkConnection() {
-		$this->setMode(self::MODE_USER);
-		$this->mode.= '/me';
-				
+		$this->setMode(self::MODE_USER, '/me');
+						
 		return $this->exec();
 	}
 	
@@ -102,6 +102,29 @@ class Zammad {
 		return $result;
 	}
 	
+	
+	/**
+	 * Update user, set new infomail value
+	 * 
+	 * @param int $userId - id of user to update
+	 * @param boolean $infomail new infomail value (true/false)
+	 * @return User updated user
+	 */
+	public function setInfoMail($userId, $infomail) {
+		if (!is_numeric($userId) || !is_bool($infomail)) {
+			return false;
+		}
+		$this->setMode(self::MODE_USER,'/' . $userId);
+		
+		$postData = array('infomail' => $infomail);
+		
+		curl_setopt($this->con, CURLOPT_POST, true);
+		curl_setopt($this->con, CURLOPT_POSTFIELDS, $postData);
+		curl_setopt($this->con, CURLOPT_CUSTOMREQUEST, 'PUT');
+
+		$user = $this->exec();
+		return new User($user);
+	}
 }
 
 ?>
