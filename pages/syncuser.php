@@ -40,13 +40,12 @@ if ($z->checkConnection()) {
 			//var_dump($user);
 		}
 		
-		//prepare boolean data
+		//prepare boolean data for sql
 		if ($user->infomail) {
 			$infomail = 1;
 		} else {
 			$infomail = 0;
 		}
-		
 		if ($user->active) {
 			$uactive = 1;
 		} else {
