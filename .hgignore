@@ -1,4 +1,5 @@
 syntax: glob
-.buildpath
 .project
+.buildpath
 .settings
+config.php
