@@ -5,4 +5,5 @@ This tool that gets all customers from Zammad and can send infomail to all that 
  Changelog:
  
  
- - this is my intial commit
+ - 
+ 
